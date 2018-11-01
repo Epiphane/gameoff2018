@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>Ludum Dare 38</title>
+  <script type="text/javascript" src="lib/jquery-3.1.0.min.js"></script>
+  <link rel="stylesheet" href="popcorn-style.css" />
+  <link rel="stylesheet" href="bootstrap.css" />
+</head>
+<body>
+  <div id="disconnect">
+    <div>
+      <h2 style="text-align: center">Disconnected...</h2>
+      <div class='uil-reload-css' style='-webkit-transform:scale(0.6)'><div></div></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>
+       <span id="dumb-number">1</span>
+	 </h2>
+  </div>
+
+  <div class="container">
+     <div class="row" id="choose-your-fate">
+        <div class="col-xs-6">
+           <button class="btn-lg btn-info" onclick="connectMobile()" style="cursor: pointer">Connect as mobile device</a>
+        </div>
+
+        <div class="col-xs-6">
+           <button class="btn-lg btn-info" onclick="connectBig()" style="cursor: pointer">Connect as Big Screen</a>
+        </div>
+     </div>
+
+     <div class="row" id="pop-da-corn" style="display:none;">
+        <div class="col-xs-12">
+           <button class="btn-lg btn-info center" onclick="do_pop()" style="cursor: pointer">POP</a>
+        </div>
+     </div>
+  </div>
+
+  <script type="text/javascript" src="lib/buzz.js"></script>
+  <script type="text/javascript" src="js/helpers/astar.js"></script>
+  <script type="text/javascript" src="js/helpers/priority-queue.js"></script>
+  <script type="text/javascript" src="lib/juicy.full.js"></script>
+
+  <script type="text/javascript" src="lib/underscore-min.js"></script>
+  <script type="text/javascript" src="lib/socket.io.js"></script>
+  <script type="text/javascript" data-main="js/main" src="lib/require.js"></script>
+
+</body>
+</html>
