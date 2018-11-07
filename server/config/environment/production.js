@@ -18,9 +18,7 @@ module.exports = {
     options: {
       dialog: 'postgres',
       port: 5432,
-      logging: false,
-      username: process.env.DATABASE_USERNAME,
-      password: process.env.DATABASE_PASSWORD
+      logging: false
     }
   },
 

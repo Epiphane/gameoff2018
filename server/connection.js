@@ -25,39 +25,6 @@ module.exports = function(io, db) {
       socket.on('remake', this.remake.bind(this));
       socket.on('player_pos', this.positionChanged.bind(this));
       socket.on('emote', this.emote.bind(this));
-
-      socket.on('become_mobile', this.becomeMobileClient.bind(this));
-      socket.on('become_desktop', this.becomeDesktopClient.bind(this));
-      socket.on('do_pop', this.do_server_pop.bind(this));
-   };
-
-   Connection.prototype.becomeMobileClient = function() {
-      // Add mobile name, kick off other people using that name
-
-      WorldController.getWorld().then((world) => {
-         socket.emit('hi_there', world.score);
-         console.log("HIYA GEORGIE");
-      });
-   };
-
-   Connection.prototype.becomeDesktopClient = function() {
-      // Dump all the state data on the desktop client
-      WorldController.getWorld().then((world) => {
-         socket.emit('world_state', world);
-         console.log("HIYA DESKTOP");
-      });
-   };
-
-   Connection.prototype.do_server_pop = function() {
-      // Check for boosts, whatever
-      WorldController.getWorld().then((world) => {
-         return world.increment({score: 1});
-      })
-      .then((world) => {
-         // in the future, only send this to desktop clients
-         io.emit('world_state', world);
-         console.log("The ((world)) says: " + JSON.stringify(world))
-      });
    };
 
    Connection.prototype.logout = function() {

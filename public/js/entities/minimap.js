@@ -21,10 +21,10 @@ define([
       },
 
       generate: function(world) {
-         // var minimap = this.getComponent('Minimap');
-         //
-         // minimap.setSize(world.width, world.height);
-         // minimap.generate(world);
+         var minimap = this.getComponent('Minimap');
+
+         minimap.setSize(world.width, world.height);
+         minimap.generate(world);
       }
    });
 });

@@ -16,20 +16,20 @@ require([
    window.GAME_WIDTH = 800;
    window.GAME_HEIGHT = 800;
 
-   // Juicy.Game.init(document.getElementById('game-canvas'), GAME_WIDTH, GAME_HEIGHT, {
-   //    LEFT: 37,
-   //    UP: 38,
-   //    RIGHT: 39,
-   //    DOWN: 40,
-   //    SPACE: 32,
-   //
-   //    W: 87,
-   //    A: 65,
-   //    S: 83,
-   //    D: 68,
-   // });
+   Juicy.Game.init(document.getElementById('game-canvas'), GAME_WIDTH, GAME_HEIGHT, {
+      LEFT: 37,
+      UP: 38,
+      RIGHT: 39,
+      DOWN: 40,
+      SPACE: 32,
 
-   // document.getElementById('game-canvas').getContext('2d').imageSmoothingEnabled = false;
+      W: 87,
+      A: 65,
+      S: 83,
+      D: 68,
+   });
+
+   document.getElementById('game-canvas').getContext('2d').imageSmoothingEnabled = false;
 
    window.onmousewheel = function(e) {
       Juicy.Game.trigger('mousewheel', e);
@@ -76,35 +76,5 @@ require([
       disconnect.hide();
    });
 
-   // Juicy.Game.setState(new GameScreen(connection)).run();
-
-
-   window.connectMobile = function() {
-      connection.emit('become_mobile', {name: "who cares"});
-      $("#pop-da-corn").show(0);
-      $("#choose-your-fate").hide(0);
-   };
-
-   window.do_pop = function() {
-      connection.emit('do_pop');
-
-      // do juicy animation here or something
-      console.log("hi mom");
-   };
-
-   window.connectBig = function() {
-      connection.emit('become_desktop');
-      $("#pop-da-corn").hide(0);
-      $("#choose-your-fate").hide(0);
-   };
-
-   connection.on('hi_there', function(data) {
-      console.log("yeah this is happening" + JSON.stringify(data));
-
-      $("#dumb-number").html(data)
-   });
-
-   connection.on('world_state', function(world) {
-      $("#dumb-number").html(world.score);
-   });
+   Juicy.Game.setState(new GameScreen(connection)).run();
 })

@@ -2,8 +2,7 @@
 <head>
 	<title>Ludum Dare 38</title>
   <script type="text/javascript" src="lib/jquery-3.1.0.min.js"></script>
-  <link rel="stylesheet" href="popcorn-style.css" />
-  <link rel="stylesheet" href="bootstrap.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="disconnect">
@@ -13,29 +12,16 @@
     </div>
   </div>
 
-  <div>
+  <div class="overlay top-left">
     <h2>
-       <span id="dumb-number">1</span>
+		 <a id="mute-link" onclick="toggleMute()" style="cursor: pointer">mute</a>
+		 <a id="happy-link" onclick="Juicy.Game.trigger('emote', 27 + 41)" style="cursor: pointer">&#x1F603;</a>
+		 <a id="happy-link" onclick="Juicy.Game.trigger('emote', 27 + 41 * 8)" style="cursor: pointer">&#x1F622;</a>
+		 <a id="happy-link" onclick="Juicy.Game.trigger('emote', Math.floor(Math.random() * 1680))" style="cursor: pointer">&#x1F3B2;</a>
 	 </h2>
   </div>
 
-  <div class="container">
-     <div class="row" id="choose-your-fate">
-        <div class="col-xs-6">
-           <button class="btn-lg btn-info" onclick="connectMobile()" style="cursor: pointer">Connect as mobile device</a>
-        </div>
-
-        <div class="col-xs-6">
-           <button class="btn-lg btn-info" onclick="connectBig()" style="cursor: pointer">Connect as Big Screen</a>
-        </div>
-     </div>
-
-     <div class="row" id="pop-da-corn" style="display:none;">
-        <div class="col-xs-12">
-           <button class="btn-lg btn-info center" onclick="do_pop()" style="cursor: pointer">POP</a>
-        </div>
-     </div>
-  </div>
+  <canvas id="game-canvas"></canvas>
 
   <script type="text/javascript" src="lib/buzz.js"></script>
   <script type="text/javascript" src="js/helpers/astar.js"></script>
@@ -45,6 +31,5 @@
   <script type="text/javascript" src="lib/underscore-min.js"></script>
   <script type="text/javascript" src="lib/socket.io.js"></script>
   <script type="text/javascript" data-main="js/main" src="lib/require.js"></script>
-
 </body>
 </html>

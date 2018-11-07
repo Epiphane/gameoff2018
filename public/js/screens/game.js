@@ -30,13 +30,17 @@ define([
          this.friends = {};
 
          var self = this;
-         connection.on('connect', function() {
-            $("#dumb-number").html("ready for action");
-         });
+         connection.on('connect', this.fetch.bind(this));
          connection.on('remake', this.fetch.bind(this));
 
-         connection.on('update_score', function(newScore){
-            $("#dumb-number").html(3);
+         connection.on('updates', function(updates) {
+            self.world.performUpdates(updates);
+         });
+
+         connection.on('emote', function(whoWhich) {
+            if (self.friends[whoWhich.who]) {
+               self.doEmote(self.friends[whoWhich.who], whoWhich.which);
+            }
          });
 
          connection.on('player_pos_update', function(newPosition) {
@@ -47,6 +51,10 @@ define([
             }
             movingFriend.getComponent('Character').walkToTile(self, newPosition.x, newPosition.y);
             movingFriend.getComponent('Character').direction = newPosition.direction;
+         });
+
+         connection.on('player_leave', function(uuid) {
+            delete self.friends[uuid];
          });
 
          this.cooldown = 0.2;
@@ -74,14 +82,10 @@ define([
 
       fetch: function() {
          var self = this;
-
-         console.log("Hey there, just found this");
-
          $.get('/api/world').then(function(world) {
-            // self.world.set(world);
-            //
-            // self.placeMainChar();
-            // EF-TODO: This will be where we can get the state of the high score board and people's boosts
+            self.world.set(world);
+
+            self.placeMainChar();
          });
       },
 

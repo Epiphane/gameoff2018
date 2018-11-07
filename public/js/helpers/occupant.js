@@ -48,15 +48,20 @@ define([
    var OccupantHelper = { tilesize: 32 };
 
    OccupantHelper.occupantAt = function(world, x, y) {
-      return 0;
+      if (x < 0) return 0;
+      if (y < 0) return 0;
+      if (x >= world.width) return 0;
+      if (y >= world.height) return 0;
+
+      return world.occupants[x + y * world.width];
    };
 
    OccupantHelper.drawOffset = function(context, dx, dy, dwidth, dheight, offset) {
       var tile_size = OccupantHelper.tilesize;
-      context.drawImage(OccupantImage,
-                        offset[0] * tile_size,
-                        offset[1] * tile_size,
-                        dwidth * tile_size,
+      context.drawImage(OccupantImage, 
+                        offset[0] * tile_size, 
+                        offset[1] * tile_size, 
+                        dwidth * tile_size, 
                         dheight * tile_size,
                         dx,
                         dy,
